@@ -2,31 +2,24 @@ version: 0.2
 
 phases:
   install:
+    runtime-versions:
+      nodejs: 18
     commands:
-      - echo Installing source NPM dependencies...
+      - echo "Installing Node.js dependencies..."
       - npm install
+
   pre_build:
     commands:
-      - echo Running pre-build commands...
-      - npm install -g serve
+      - echo "Running pre-build tasks..."
+
   build:
     commands:
-      - echo Build started on `date`
-      - npm run build
+      - echo "Building Node.js application..."
+
   post_build:
     commands:
-      - echo Build completed on `date`
-      - echo Installing dependencies for production...
-      - npm prune --production
+      - echo "Build completed successfully"
 
 artifacts:
   files:
-    - 'package.json'
-    - 'server.js'
-    - 'Procfile'
-    - 'dist/**/*'
-  name: myapp-$(date +%Y-%m-%d)
-
-cache:
-  paths:
-    - node_modules/**/*
+    - '**/*'
