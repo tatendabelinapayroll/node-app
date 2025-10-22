@@ -1,0 +1,41 @@
+# This is the AWS CodeBuild BuildSpec file.
+# It defines the commands to run during each phase of the build process.
+
+# --- Required Parameters ---
+version: 0.2
+
+# The 'phases' section defines the commands to run during each phase of the build.
+phases:
+  # The install phase is for installing dependencies that are needed for the build.
+  install:
+    commands:
+      # Install the required Python packages for your application.
+      - echo "Installing Python dependencies..."
+
+      # You can also install other build-related tools here if needed.
+
+  # The pre_build phase is for running commands before the main build.
+  # This is a good place for linting, static analysis, or running unit tests.
+  pre_build:
+    commands:
+      - echo "Running pre-build tasks...."
+      # For a Django or Flask app, you might run tests here.
+    
+
+  # The build phase is for running the main build commands.
+  # This is where you would compile code, build Docker images, or package assets.
+  build:
+    commands:
+      - echo "Starting the build..."
+      # For a simple web app, you might collect static files.
+
+  # The post_build phase is for finalizing the build process.
+  # This is a good place to create the deployment artifact.
+  post_build:
+    commands:
+      - echo "Building the deployment artifact..."
+      - zip -r nodejsapp.zip .
+
+artifacts:
+  files:
+    - nodejsapp.zip
